@@ -334,7 +334,6 @@ foreach ($data as $nid => $item) {
 	    	echo "\tWARNING: could not add $f_name\n";
 		}
 	}
-	exit(0);
 }
 $zip->close();
 
