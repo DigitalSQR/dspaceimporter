@@ -10,7 +10,7 @@ $collection = 'gdhn';
 //$dbhost = '127.0.0.1';
 $dbhost = 'localhost';
 $dbuser = 'root';
-$dbpass = '';
+$dbpass = 'root';
 $port = 8889;
    
 ini_set('display_errors', 1);
@@ -64,8 +64,7 @@ $filenames = array(
     
 //$furl = 'https://www.' . $collection . '.org/sites/default/files/';
 //$furl = 'http://www.mhealthknowledge.org/sites/default/files/';
-$furl = 'http://localhost:8888/files/';
-
+$furl = '/Applications/MAMP/htdocs/files/';
 
 $headers = array();
 foreach (explode(",",$fields) as $f) {
@@ -165,16 +164,16 @@ foreach ($data as $nid => $item) {
 		$rurl =$furl . $filename;
 		if (array_key_exists($rurl,$got) && $got[$rurl]) { continue;}
 		echo "\tRetrieving for $prefix: $rurl\n";
-		if( !copy($rurl, $dir . '/contents/') ) {  
+		if( !copy('/Applications/MAMP/htdocs/files/'.$item['resource_file_filename'], $dir . '/contents/') ) {  
 		    echo "File can't be copied! \n";  
 		}  
 		else {  
 		    echo "File has been copied! \n";  
 		}  
 		$rfile = get_remote_contents($rurl);
-		if (!$rfile) {echo "\tWARNING: Could not retrieve $rurl\n";	continue;}
+		if (!$rurl) {echo "\tWARNING: Could not retrieve $rurl\n";	continue;}
 		$got[$rurl] = true;
-		file_put_contents('files/' . $filename, $rfile);
+		file_put_contents('/Applications/MAMP/htdocs/files/' . $filename, $rfile);
 		$mime = false;
 		if (array_key_existS($i,$item[$prefix . '_mime'])) {   $mime = $item[$prefix . '_mime'][$i]; }
 		if (!$mime) { $mime = mime_content_type('files/' .  $filename);}
@@ -192,7 +191,8 @@ foreach ($data as $nid => $item) {
 		$rurl =$furl . $filename;
 		if (array_key_exists($rurl,$got) && $got[$rurl]) { continue;}
 		echo "\tRetrieving for $prefix: $rurl\n";
-		if( !copy($rurl, $dir . '/contents/') ) {  
+		
+		if( !copy('/Applications/MAMP/htdocs/files/'.$item['resource_file_filename'], $dir . '/contents/') ) {  
 		    echo "File can't be copied! \n";  
 		}  
 		else {  
@@ -222,7 +222,8 @@ foreach ($data as $nid => $item) {
 		}
 		echo "\tRetrieving for $prefix: $rurl\n";
 		$rfile = get_remote_contents($rurl);
-		if( !copy($rurl, $dir . '/contents/') ) {  
+		
+		if( !copy('/Applications/MAMP/htdocs/files/'.$item['resource_file_filename'], $dir . '/contents/') ) {  
 		    echo "File can't be copied! \n";  
 		}  
 		else {  
