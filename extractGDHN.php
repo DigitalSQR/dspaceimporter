@@ -10,7 +10,7 @@ $collection = 'gdhn';
 //$dbhost = '127.0.0.1';
 $dbhost = 'localhost';
 $dbuser = 'root';
-$dbpass = 'root';
+$dbpass = '';
 $port = 8889;
    
 ini_set('display_errors', 1);
